@@ -341,7 +341,7 @@ export function Presentation() {
 
       <section className="slide schema-detail-slide" id="things-types">
         <SlideHeading eyebrow="The Things record algebra · interpretation">
-          Typed records select precise validation without closing the generic model.
+          A type selects a specialized schema while the record remains compatible with the generic Thing model.
         </SlideHeading>
         <div className="schema-detail-layout">
           <div className="schema-example">

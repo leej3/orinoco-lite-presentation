@@ -86,7 +86,7 @@ pid: https://orcid.org/0000-0002-1825-0097
 
 **Sources:** [Thing class](https://concepts.datalad.org/s/things/v1/Thing/) · [`pid` slot](https://concepts.datalad.org/s/things/v1/pid/) · [identifier principle](https://concepts.datalad.org/s/things/v1/about/#every-thing-must-have-an-identifier) · [linking, not nesting](https://concepts.datalad.org/s/things/v1/about/#linking-not-nesting)
 
-## Slide 5 — Typed records select precise validation without closing the generic model
+## Slide 5 — A type selects a specialized schema while the record remains compatible with the generic Thing model
 
 **Eyebrow:** The Things record algebra · interpretation
 
