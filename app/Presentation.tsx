@@ -10,6 +10,18 @@ const URLS = {
   concepts: 'https://concepts.datalad.org/',
   usage: 'https://concepts.datalad.org/usage-considerations/',
   thingsV1: 'https://concepts.datalad.org/s/things/v1/',
+  thingsAbout: 'https://concepts.datalad.org/s/things/v1/about/',
+  thingClass: 'https://concepts.datalad.org/s/things/v1/Thing/',
+  pidSlot: 'https://concepts.datalad.org/s/things/v1/pid/',
+  schemaTypeSlot: 'https://concepts.datalad.org/s/things/v1/schema_type/',
+  attributeClass: 'https://concepts.datalad.org/s/things/v1/AttributeSpecification/',
+  attributesSlot: 'https://concepts.datalad.org/s/things/v1/attributes/',
+  statementClass: 'https://concepts.datalad.org/s/things/v1/Statement/',
+  characterizedBySlot: 'https://concepts.datalad.org/s/things/v1/characterized_by/',
+  mappingsSlot: 'https://concepts.datalad.org/s/things/v1/mappings/',
+  thingsContext: 'https://concepts.datalad.org/s/things/v1.context.jsonld',
+  thingsShacl: 'https://concepts.datalad.org/s/things/v1.shacl.ttl',
+  thingsOwl: 'https://concepts.datalad.org/s/things/v1.owl.ttl',
   schemaAbout: 'https://concepts.datalad.org/about/',
   dumpThingsDocs: 'https://dump-things-service.readthedocs.io/en/latest/introduction.html',
   shaclVue: 'https://www.psychoinformatics.de/instruments/shacl-vue/',
@@ -45,7 +57,12 @@ type SourceLink = { href: string; label: string };
 const slides = [
   { id: 'opening', label: 'Opening' },
   { id: 'problem', label: 'The recurring problem' },
-  { id: 'upstream-model', label: 'Upstream model' },
+  { id: 'upstream-model', label: 'Three interoperability layers' },
+  { id: 'things-identity', label: 'Identified Things' },
+  { id: 'things-types', label: 'Typed records' },
+  { id: 'things-attributes', label: 'Literal facts' },
+  { id: 'things-relationships', label: 'Relationships' },
+  { id: 'things-semantics', label: 'Semantic alignment' },
   { id: 'upstream-components', label: 'Upstream components' },
   { id: 'why-lite', label: 'Why Lite' },
   { id: 'transport', label: 'Same model, different transport' },
@@ -259,50 +276,164 @@ export function Presentation() {
       </section>
 
       <section className="slide upstream-slide" id="upstream-model">
-        <SlideHeading eyebrow="Upstream ORINOCO · concept">
-          Focused metadata systems contribute to—and learn from—a curated knowledge base.
+        <SlideHeading eyebrow="Upstream ORINOCO · three interoperability layers">
+          ORINOCO connects focused applications, a constrained knowledge graph, and semantic technologies.
         </SlideHeading>
-        <div className="model-flow" aria-label="Upstream application and generic model flow">
-          <div className="model-side">
-            <span>Purpose-built UI or API</span>
-            <strong>custom data model</strong>
-            <small>submission → curation → application records</small>
+        <div className="interoperability-stack" aria-label="Three interoperability layers">
+          <div>
+            <span>01 · Transform</span>
+            <strong>Application-specific models</strong>
+            <p>Reduced records and interfaces optimized for one task: submission, editing, reporting, or presentation.</p>
           </div>
-          <div className="transform-pair" aria-hidden="true">
-            <b>transform</b>
-            <span>⇄</span>
-            <b>filter / export</b>
+          <b aria-hidden="true">⇅</b>
+          <div className="knowledge-layer">
+            <span>02 · Integrate</span>
+            <strong>Curated Things knowledge graph</strong>
+            <p>Arbitrarily detailed descriptions assembled from a deliberately limited family of record structures.</p>
           </div>
-          <div className="model-core">
-            <span>Integrated knowledge</span>
-            <strong>generic Things model</strong>
-            <small>submission → curation → knowledge graph</small>
+          <b aria-hidden="true">⇅</b>
+          <div>
+            <span>03 · Interpret and project</span>
+            <strong>Semantic ecosystem</strong>
+            <p>RDF, JSON-LD, SHACL, OWL, shared identifiers, vocabularies, ontologies, and graph tooling.</p>
           </div>
         </div>
-        <div className="upstream-principles">
-          <p>
-            <strong>Thing</strong> = identified record with a <code>pid</code> and{' '}
-            <code>schema_type</code>
-          </p>
-          <p>
-            <strong>Both sides are modeled data.</strong> The generic representation is the
-            integration layer—not every application&apos;s ideal working shape.
-          </p>
-          <p>
-            <strong>Curators control entry.</strong> Submissions enter an inbox before joining the
-            curated area.
-          </p>
-        </div>
+        <p className="schema-thesis">
+          ORINOCO is worth using because applications keep useful local shapes while the curated
+          middle layer supplies shared identity, validation, relationships, and semantic reach.
+        </p>
         <SourceStrip
           links={[
             { href: URLS.usage, label: 'System proposal + diagram' },
+            { href: URLS.thingsAbout, label: 'Things design principles' },
             { href: URLS.thingsV1, label: 'Things v1 schema' },
             { href: URLS.schemaAbout, label: 'Schema composition' },
-            { href: pin('things-schemas'), label: 'Lite schema pin' },
           ]}
           note="ORINOCO Lite deliberately pins the source Things v1 contract; upstream documentation continues to evolve."
         />
         <SlideNumber value={3} />
+      </section>
+
+      <section className="slide schema-detail-slide" id="things-identity">
+        <SlideHeading eyebrow="The Things record algebra · identity">
+          Identified Things can be described once and referenced everywhere.
+        </SlideHeading>
+        <div className="schema-detail-layout">
+          <div className="schema-example">
+            <span>One independently referenceable record</span>
+            <pre><code>{`pid: https://orcid.org/0000-0002-1825-0097`}</code></pre>
+          </div>
+          <div className="schema-explanation">
+            <p><strong>A Thing represents something with an identity.</strong> Its required <code>pid</code> is a URI or CURIE that other records can use as a stable reference.</p>
+            <p><strong>Identity keeps descriptions independent.</strong> A person, publication, project, or instrument can be updated without copying its complete record into every related record.</p>
+            <blockquote>Linking replaces repeated nesting.</blockquote>
+          </div>
+        </div>
+        <SourceStrip links={[
+          { href: URLS.thingClass, label: 'Thing class' },
+          { href: URLS.pidSlot, label: 'pid slot' },
+          { href: `${URLS.thingsAbout}#every-thing-must-have-an-identifier`, label: 'Identifier principle' },
+          { href: `${URLS.thingsAbout}#linking-not-nesting`, label: 'Linking, not nesting' },
+        ]} />
+        <SlideNumber value={4} />
+      </section>
+
+      <section className="slide schema-detail-slide" id="things-types">
+        <SlideHeading eyebrow="The Things record algebra · interpretation">
+          Typed records select precise validation without closing the generic model.
+        </SlideHeading>
+        <div className="schema-detail-layout">
+          <div className="schema-example">
+            <span>Identity plus a schema class designator</span>
+            <pre><code>{`pid: ex:paper-1\nschema_type: xyzri:XYZPublication`}</code></pre>
+          </div>
+          <div className="schema-explanation">
+            <p><strong><code>schema_type</code> says which specialized schema class governs this record.</strong> A validator can apply publication-specific fields and constraints even when the surrounding collection accepts generic Things.</p>
+            <p><strong>The foundation stays small; derived schemas add domain precision.</strong> ORINOCO can integrate many kinds of Things without pretending that every kind has the same detailed model.</p>
+            <blockquote>Generic integration does not require generic validation.</blockquote>
+          </div>
+        </div>
+        <SourceStrip links={[
+          { href: URLS.schemaTypeSlot, label: 'schema_type slot' },
+          { href: `${URLS.thingsAbout}#type-designator-slot`, label: 'Type designator principle' },
+          { href: URLS.schemaAbout, label: 'Schema composition' },
+          { href: pin('things-schemas'), label: 'Lite schema pin' },
+        ]} />
+        <SlideNumber value={5} />
+      </section>
+
+      <section className="slide schema-detail-slide" id="things-attributes">
+        <SlideHeading eyebrow="The Things record algebra · literal facts">
+          Attributes attach values and local characteristics without inventing new identities.
+        </SlideHeading>
+        <div className="schema-detail-layout">
+          <div className="schema-example">
+            <span>A predicate, literal value, and optional datatype</span>
+            <pre><code>{`pid: ex:paper-1\nattributes:\n  - predicate: schema:datePublished\n    value: "2026-08-25"\n    range: xsd:date`}</code></pre>
+          </div>
+          <div className="schema-explanation">
+            <p><strong>An <code>AttributeSpecification</code> attaches a literal or locally described characteristic to a Thing.</strong> The attribute exists inside this description and does not need its own <code>pid</code>.</p>
+            <p><strong>The predicate states what the value means.</strong> An optional <code>range</code> states its datatype; nested attributes can further qualify the local characteristic.</p>
+            <blockquote>Literal fact = predicate + value, optionally typed and qualified.</blockquote>
+          </div>
+        </div>
+        <SourceStrip links={[
+          { href: URLS.attributesSlot, label: 'attributes slot' },
+          { href: URLS.attributeClass, label: 'AttributeSpecification' },
+          { href: `${URLS.thingsV1}value/`, label: 'value slot' },
+          { href: `${URLS.thingsV1}range/`, label: 'range slot' },
+        ]} />
+        <SlideNumber value={6} />
+      </section>
+
+      <section className="slide schema-detail-slide" id="things-relationships">
+        <SlideHeading eyebrow="The Things record algebra · relationships">
+          Statements qualify links between independently identified Things.
+        </SlideHeading>
+        <div className="schema-detail-layout">
+          <div className="schema-example">
+            <span>The subject is the containing Thing</span>
+            <pre><code>{`pid: ex:paper-1\ncharacterized_by:\n  - predicate: schema:author\n    object: ex:person-1`}</code></pre>
+            <div className="triple-reading"><code>ex:paper-1</code><b>schema:author</b><code>ex:person-1</code></div>
+          </div>
+          <div className="schema-explanation">
+            <p><strong>The inline <code>Statement</code> records the predicate and object.</strong> Its subject is the Thing that contains the statement.</p>
+            <p><strong>Only the small relationship description is inline.</strong> The author record is not nested; <code>object</code> references that Thing by its identifier.</p>
+            <blockquote>Relationship = identified subject + predicate + identified object.</blockquote>
+          </div>
+        </div>
+        <SourceStrip links={[
+          { href: URLS.characterizedBySlot, label: 'characterized_by slot' },
+          { href: URLS.statementClass, label: 'Statement class' },
+          { href: `${URLS.thingsAbout}#qualified-relationships`, label: 'Qualified relationships' },
+          { href: `${URLS.thingsV1}predicate/`, label: 'predicate slot' },
+          { href: `${URLS.thingsV1}object/`, label: 'object slot' },
+        ]} />
+        <SlideNumber value={7} />
+      </section>
+
+      <section className="slide schema-detail-slide" id="things-semantics">
+        <SlideHeading eyebrow="The Things record algebra · semantic reach">
+          Identifiers, predicates, types, and mappings connect records to shared meaning.
+        </SlideHeading>
+        <div className="semantic-interface">
+          <div><span>Identity</span><code>https://doi.org/…</code><p>Which Thing is meant?</p></div>
+          <div><span>Relationship</span><code>schema:author</code><p>What does this link mean?</p></div>
+          <div><span>Validation</span><code>xyzri:XYZPublication</code><p>Which record contract applies?</p></div>
+          <div><span>Alignment</span><code>bibo:AcademicArticle</code><p>Which external concept corresponds?</p></div>
+        </div>
+        <p className="schema-thesis">
+          The record containers are the programming interface. Identifiers, type designators,
+          predicates, datatypes, and mappings carry the semantic commitments.
+        </p>
+        <SourceStrip links={[
+          { href: URLS.mappingsSlot, label: 'mappings slots' },
+          { href: `${URLS.thingsV1}exact_mappings/`, label: 'exact mappings' },
+          { href: URLS.thingsContext, label: 'JSON-LD context' },
+          { href: URLS.thingsShacl, label: 'SHACL representation' },
+          { href: URLS.thingsOwl, label: 'OWL representation' },
+        ]} />
+        <SlideNumber value={8} />
       </section>
 
       <section className="slide components-slide" id="upstream-components">
@@ -338,7 +469,7 @@ export function Presentation() {
             { href: pin('www-from-model'), label: 'Lite website pin' },
           ]}
         />
-        <SlideNumber value={4} />
+        <SlideNumber value={9} />
       </section>
 
       <section className="slide why-slide" id="why-lite">
@@ -376,7 +507,7 @@ export function Presentation() {
             { href: doc('docs/milestone-capability-map.md'), label: 'Capability map' },
           ]}
         />
-        <SlideNumber value={5} />
+        <SlideNumber value={10} />
       </section>
 
       <section className="slide translation-slide" id="transport">
@@ -412,7 +543,7 @@ export function Presentation() {
           ]}
           note="“Source adapter,” “proposal branch,” and “annotation overlay” are Lite implementation terms; importer, enricher, inbox, curated area, and PAV remain the upstream semantic anchors."
         />
-        <SlideNumber value={6} />
+        <SlideNumber value={11} />
       </section>
 
       <section className="slide challenge-slide" id="challenge-semantics">
@@ -437,7 +568,7 @@ export function Presentation() {
             { href: pin('things-schemas'), label: 'Things source pin' },
           ]}
         />
-        <SlideNumber value={7} />
+        <SlideNumber value={12} />
       </section>
 
       <section className="slide challenge-slide provenance-slide" id="challenge-provenance">
@@ -475,7 +606,7 @@ export function Presentation() {
             { href: doc('docs/milestone-3-acceptance.md#publication-migration-result'), label: 'Preserved review queues' },
           ]}
         />
-        <SlideNumber value={8} />
+        <SlideNumber value={13} />
       </section>
 
       <section className="slide challenge-slide operation-slide" id="challenge-operation">
@@ -506,7 +637,7 @@ export function Presentation() {
             { href: doc('packages/orinoco-lite/README.md'), label: 'Engine interface' },
           ]}
         />
-        <SlideNumber value={9} />
+        <SlideNumber value={14} />
       </section>
 
       <section className="slide architecture-slide" id="architecture">
@@ -543,7 +674,7 @@ export function Presentation() {
             { href: doc('docs/milestone-capability-map.md'), label: 'Carried capabilities' },
           ]}
         />
-        <SlideNumber value={10} />
+        <SlideNumber value={15} />
       </section>
 
       <section className="slide metadata-slide" id="metadata">
@@ -578,7 +709,7 @@ export function Presentation() {
           ]}
           note="The older 186 canonical + 13 reference vocabulary describes the same accepted content that the current contract treats as one 199-Thing input tree."
         />
-        <SlideNumber value={11} />
+        <SlideNumber value={16} />
       </section>
 
       <section className="slide creation-slide" id="creation">
@@ -620,7 +751,7 @@ export function Presentation() {
             { href: 'https://github.com/con/dump-research-info', label: 'CON importer source' },
           ]}
         />
-        <SlideNumber value={12} />
+        <SlideNumber value={17} />
       </section>
 
       <section className="slide curation-slide" id="curation">
@@ -664,7 +795,7 @@ export function Presentation() {
           ]}
           note="As of 24 Aug 2026, adapter-PR curation is implemented on draft branches; direct SHACL Vue bundle-to-PR submission is a separate profile to verify before the meeting."
         />
-        <SlideNumber value={13} />
+        <SlideNumber value={18} />
       </section>
 
       <section className="slide demo-slide" id="demo">
@@ -694,7 +825,7 @@ export function Presentation() {
             { href: doc('docs/milestone-4-acceptance.md#ordinary-consumer-scenarios'), label: 'Accepted demo evidence' },
           ]}
         />
-        <SlideNumber value={14} />
+        <SlideNumber value={19} />
       </section>
 
       <section className="slide curators-slide" id="curators">
@@ -723,7 +854,7 @@ export function Presentation() {
             { href: doc('docs/source-adapters.md#authorities-and-state'), label: 'Authority boundaries' },
           ]}
         />
-        <SlideNumber value={15} />
+        <SlideNumber value={20} />
       </section>
 
       <section className="slide roadmap-slide" id="roadmap">
@@ -753,7 +884,7 @@ export function Presentation() {
             { href: doc('docs/lightweight-architecture-roadmap.md#delivery-plan'), label: 'Longer roadmap' },
           ]}
         />
-        <SlideNumber value={16} />
+        <SlideNumber value={21} />
       </section>
 
       <section className="slide closing-slide" id="closing">
@@ -783,7 +914,7 @@ export function Presentation() {
             </a>
           </div>
         </footer>
-        <SlideNumber value={17} />
+        <SlideNumber value={22} />
       </section>
 
       <div className="mobile-controls" aria-label="Slide controls">

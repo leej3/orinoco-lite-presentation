@@ -9,6 +9,9 @@ test('exports the complete ORINOCO Lite presentation', async () => {
 
   assert.match(html, /<title>ORINOCO Lite — A shared research-information system for CON<\/title>/i);
   assert.match(html, /Every lab task reconstructs facts the lab already knows/);
+  assert.match(html, /three interoperability layers/i);
+  assert.match(html, /Only the small relationship description is inline/);
+  assert.match(html, /Literal fact = predicate \+ value/);
   assert.match(html, /ORINOCO is an interoperating ecosystem/);
   assert.match(html, /You are being voluntold as curators/);
   assert.match(html, /Same upstream model/);
@@ -18,6 +21,11 @@ test('exports the complete ORINOCO Lite presentation', async () => {
     'opening',
     'problem',
     'upstream-model',
+    'things-identity',
+    'things-types',
+    'things-attributes',
+    'things-relationships',
+    'things-semantics',
     'upstream-components',
     'why-lite',
     'transport',
