@@ -21,8 +21,7 @@ chrome rather than slide content. Status-sensitive claims are dated **24 August
 > ORINOCO Lite<br />
 > *what CON knows*
 
-**Subtitle:** Upstream Things semantics, GitHub-centered curation, and a shared
-research-information foundation for the lab.
+**Subtitle:** A shared research-information foundation for the lab using "Things" and GitHub-centered curation.
 
 **Actions:**
 
@@ -59,6 +58,7 @@ structured knowledge beneath it.
 - [Barcelona Declaration / open research information](https://barcelona-declaration.org/)
 
 ## Slide 3 — Focused metadata systems contribute to—and learn from—a curated knowledge base
+
 
 **Eyebrow:** Upstream ORINOCO · concept
 
