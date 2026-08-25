@@ -794,7 +794,7 @@ export function Presentation() {
             { href: URLS.reviewApp, label: 'Hosted curation interface' },
             { href: URLS.engineeringPr, label: 'Engineering PR #16' },
           ]}
-          note="As of 25 Aug 2026, the adapter and SHACL Vue paths are released and integrated. A real Zotero proposal is green; authenticated human disposition and finalization remain pending."
+          note="As of 25 Aug 2026, the adapter and SHACL Vue paths are released and integrated. Authenticated access to all 126 real Zotero candidates is verified; human disposition and finalization remain pending."
         />
         <SlideNumber value={18} />
       </section>
@@ -865,8 +865,8 @@ export function Presentation() {
         <div className="roadmap-track">
           {[
             ['Accepted', 'Milestone 5 implementation', 'Released runtime, adapters, PAV join, hosted review, SHACL Vue handoff'],
-            ['Integrated', 'Distribution', 'Engine v0.2.0rc3, template v0.2.0rc4, ordinary downstream, static site + editor'],
-            ['Live gate', 'Authenticated review', 'Submit and finalize the green real Zotero proposal through the hosted interface'],
+            ['Integrated', 'Distribution', 'Engine v0.2.0rc3, template v0.2.0rc6, ordinary downstream, static site + editor'],
+            ['Live gate', 'Human disposition', 'Authenticated access works; submit and finalize the green real Zotero proposal'],
             ['Semantic gate', 'dump-research-info', 'Resolve the dangling source assertion explicitly; do not invent a mapping'],
             ['Broaden', 'Beyond the website', 'Canonical RDF/N-Triples export before designing a generic projection API'],
             ['Graduate', 'Production', 'Decide cutover, governance, identity, rights, accessibility, hosting, and rollback'],

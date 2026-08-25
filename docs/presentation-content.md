@@ -396,7 +396,7 @@ Prefer the upstream role—**importer**, **enricher**, or **scraper**—when it 
 **Rule:** Missing, unchecked, failed, or closed is never a curation decision.
 
 **Status note:** As of 25 August 2026, the adapter and SHACL Vue paths are released and integrated.
-A real Zotero proposal is green; authenticated human disposition and finalization remain pending.
+Authenticated access to all 126 real Zotero candidates is verified; human disposition and finalization remain pending.
 
 **Sources:**
 
@@ -460,8 +460,8 @@ This slide is a live demo rather than a static explanation.
 | Status | Workstream | Current meaning |
 | --- | --- | --- |
 | Accepted | Milestone 5 implementation | Released runtime, adapters, PAV join, hosted review, SHACL Vue handoff |
-| Integrated | Distribution | Engine v0.2.0rc3, template v0.2.0rc4, ordinary downstream, static site + editor |
-| Live gate | Authenticated review | Submit and finalize the green real Zotero proposal through the hosted interface |
+| Integrated | Distribution | Engine v0.2.0rc3, template v0.2.0rc6, ordinary downstream, static site + editor |
+| Live gate | Human disposition | Authenticated access works; submit and finalize the green real Zotero proposal |
 | Semantic gate | dump-research-info | Resolve the dangling source assertion explicitly; do not invent a mapping |
 | Broaden | Beyond the website | Canonical RDF/N-Triples export before designing a generic projection API |
 | Graduate | Production | Decide cutover, governance, identity, rights, accessibility, hosting, and rollback |
