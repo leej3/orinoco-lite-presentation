@@ -14,6 +14,10 @@ The published deck is at
 - Every technical slide includes direct sources or further-reading links.
 - Slide IDs are stable URL fragments, for example `#metadata` and `#curation`.
 
+The [presentation content draft](docs/presentation-content.md) is the working
+Markdown version of the deck, with one section per slide for discussion and
+revision.
+
 ## Run locally
 
 Node.js 22.13 or newer is required.
