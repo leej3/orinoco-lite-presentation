@@ -308,8 +308,9 @@ export function Presentation() {
             { href: URLS.thingsAbout, label: 'Things design principles' },
             { href: URLS.thingsV1, label: 'Things v1 schema' },
             { href: URLS.schemaAbout, label: 'Schema composition' },
+            { href: doc('docs/explaining-schema-issues.md#what-the-schema-pin-means'), label: 'What the schema pin means' },
           ]}
-          note="ORINOCO Lite deliberately pins the source Things v1 contract; upstream documentation continues to evolve."
+          note="ORINOCO Lite uses a fixed, tested schema-and-runtime tuple. New upstream behavior enters only through a deliberate compatibility update."
         />
         <SlideNumber value={3} />
       </section>
@@ -793,7 +794,7 @@ export function Presentation() {
             { href: URLS.reviewApp, label: 'Hosted curation interface' },
             { href: URLS.engineeringPr, label: 'Engineering PR #16' },
           ]}
-          note="As of 24 Aug 2026, adapter-PR curation is implemented on draft branches; direct SHACL Vue bundle-to-PR submission is a separate profile to verify before the meeting."
+          note="As of 25 Aug 2026, the adapter and SHACL Vue paths are released and integrated. A real Zotero proposal is green; authenticated human disposition and finalization remain pending."
         />
         <SlideNumber value={18} />
       </section>
@@ -858,15 +859,15 @@ export function Presentation() {
       </section>
 
       <section className="slide roadmap-slide" id="roadmap">
-        <SlideHeading eyebrow="What remains · 24 Aug 2026">
-          The static site is accepted; the sustainable curation loop is the active frontier.
+        <SlideHeading eyebrow="What remains · 25 Aug 2026">
+          Milestone 5 is implemented; live review and production governance are the active gates.
         </SlideHeading>
         <div className="roadmap-track">
           {[
-            ['Accepted', 'Distribution', 'Engine/runtime, template, ordinary downstream, static site + editor'],
-            ['In review', 'Source adapters', 'Zotero + dump-research-info, PAV join, accept/reject/defer, hosted UI'],
-            ['Next gate', 'Operational proof', 'Merge releases, approve app permission, green hosted checks, first real proposal'],
-            ['Follow-up', 'Human edit submission', 'Complete and verify the SHACL Vue review-bundle-to-PR profile'],
+            ['Accepted', 'Milestone 5 implementation', 'Released runtime, adapters, PAV join, hosted review, SHACL Vue handoff'],
+            ['Integrated', 'Distribution', 'Engine v0.2.0rc3, template v0.2.0rc4, ordinary downstream, static site + editor'],
+            ['Live gate', 'Authenticated review', 'Submit and finalize the green real Zotero proposal through the hosted interface'],
+            ['Semantic gate', 'dump-research-info', 'Resolve the dangling source assertion explicitly; do not invent a mapping'],
             ['Broaden', 'Beyond the website', 'Canonical RDF/N-Triples export before designing a generic projection API'],
             ['Graduate', 'Production', 'Decide cutover, governance, identity, rights, accessibility, hosting, and rollback'],
           ].map(([status, name, detail], index) => (

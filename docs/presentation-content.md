@@ -66,8 +66,10 @@ The durable asset is the curated, structured knowledge beneath it.
 - [Things design principles](https://concepts.datalad.org/s/things/v1/about/)
 - [Things v1 schema](https://concepts.datalad.org/s/things/v1/)
 - [Schema composition](https://concepts.datalad.org/about/)
+- [What the schema pin means](https://github.com/con/orinoco-lite-dev/blob/main/docs/explaining-schema-issues.md#what-the-schema-pin-means)
 
-**Status note:** ORINOCO Lite deliberately pins the source Things v1 contract; upstream documentation continues to evolve.
+**Status note:** ORINOCO Lite uses a fixed, tested schema-and-runtime tuple.
+New upstream behavior enters only through a deliberate compatibility update.
 
 ## Slide 4 — Identified Things can be described once and referenced everywhere
 
@@ -393,7 +395,8 @@ Prefer the upstream role—**importer**, **enricher**, or **scraper**—when it 
 
 **Rule:** Missing, unchecked, failed, or closed is never a curation decision.
 
-**Status note:** As of 24 August 2026, adapter-PR curation is implemented on draft branches; direct SHACL Vue bundle-to-PR submission is a separate profile to verify before the meeting.
+**Status note:** As of 25 August 2026, the adapter and SHACL Vue paths are released and integrated.
+A real Zotero proposal is green; authenticated human disposition and finalization remain pending.
 
 **Sources:**
 
@@ -450,16 +453,16 @@ This slide is a live demo rather than a static explanation.
 - [Accept / reject / defer](https://github.com/con/orinoco-lite-dev/blob/main/docs/source-adapters.md#decisions-and-cache)
 - [Authority boundaries](https://github.com/con/orinoco-lite-dev/blob/main/docs/source-adapters.md#authorities-and-state)
 
-## Slide 21 — The static site is accepted; the sustainable curation loop is the active frontier
+## Slide 21 — Milestone 5 is implemented; live review and production governance are the active gates
 
-**Eyebrow:** What remains · 24 August 2026
+**Eyebrow:** What remains · 25 August 2026
 
 | Status | Workstream | Current meaning |
 | --- | --- | --- |
-| Accepted | Distribution | Engine/runtime, template, ordinary downstream, static site + editor |
-| In review | Source adapters | Zotero + dump-research-info, PAV join, accept/reject/defer, hosted UI |
-| Next gate | Operational proof | Merge releases, approve app permission, green hosted checks, first real proposal |
-| Follow-up | Human edit submission | Complete and verify the SHACL Vue review-bundle-to-PR profile |
+| Accepted | Milestone 5 implementation | Released runtime, adapters, PAV join, hosted review, SHACL Vue handoff |
+| Integrated | Distribution | Engine v0.2.0rc3, template v0.2.0rc4, ordinary downstream, static site + editor |
+| Live gate | Authenticated review | Submit and finalize the green real Zotero proposal through the hosted interface |
+| Semantic gate | dump-research-info | Resolve the dangling source assertion explicitly; do not invent a mapping |
 | Broaden | Beyond the website | Canonical RDF/N-Triples export before designing a generic projection API |
 | Graduate | Production | Decide cutover, governance, identity, rights, accessibility, hosting, and rollback |
 

@@ -49,7 +49,7 @@ vocabulary.
 
 Current Lite claims link to the corresponding plans, specifications,
 acceptance records, repositories, and review pull requests. Status-sensitive
-slides are dated 24 August 2026.
+slides are dated 25 August 2026.
 
 ## Credits and license
 
